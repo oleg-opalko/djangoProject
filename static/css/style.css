@@ -1,0 +1,28 @@
+.dropdown-hover-all .dropdown-menu, .dropdown-hover > .dropdown-menu.dropend { margin-left:-1px !important }
+    .navbar-nav {
+        display: flex;
+        flex-wrap: nowrap;
+    }
+
+    .dropdown-menu {
+        white-space: nowrap;
+    }
+
+    .navbar-collapse {
+        width: 100%;
+    }
+
+.btn-custom-toggler {
+    background-color: #00aaff;
+    border: 2px solid #0077cc;
+    color: white;
+}
+
+.btn-custom-toggler:hover {
+    background-color: #0077cc;
+    border-color: #005fa3;
+}
+
+.btn-custom-toggler .navbar-toggler-icon {
+    background-color: white;
+}

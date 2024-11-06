@@ -1,0 +1,47 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container-fluid">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                {% for menu in menus %}
+                    <li class="nav-item {% if menu.children.all %}dropdown{% endif %}">
+                        <button class="btn btn-primary {% if menu.children.all %}dropdown-toggle{% endif %}" type="button" id="{{ menu.slug }}Dropdown" {% if menu.children.all %}data-bs-toggle="dropdown" aria-expanded="false"{% endif %}>
+                            {{ menu.title }}
+                        </button>
+                        {% if menu.children.all %}
+                            <div class="dropdown-menu" aria-labelledby="{{ menu.slug }}Dropdown">
+                                {% for child in menu.children.all %}
+                                    <div class="dropdown dropend {% if child.children.all %}dropdown{% endif %}">
+                                        <a class="dropdown-item {% if child.children.all %}dropdown-toggle{% endif %}" href="#" id="dropdown-{{ child.slug }}" {% if child.children.all %}data-bs-toggle="dropdown" aria-expanded="false"{% endif %}>
+                                            {{ child.title }}
+                                        </a>
+                                        {% if child.children.all %}
+                                            <div class="dropdown-menu" aria-labelledby="dropdown-{{ child.slug }}">
+                                                {% for grandchild in child.children.all %}
+                                                    <div class="dropdown-item {% if grandchild.children.all %}dropdown{% endif %}">
+                                                        <a class="dropdown-item {% if grandchild.children.all %}dropdown-toggle{% endif %}" href="#" id="dropdown-{{ grandchild.slug }}" {% if grandchild.children.all %}data-bs-toggle="dropdown" aria-expanded="false"{% endif %}>
+                                                            {{ grandchild.title }}
+                                                        </a>
+                                                        {% if grandchild.children.all %}
+                                                            <div class="dropdown-menu" aria-labelledby="dropdown-{{ grandchild.slug }}">
+                                                                {% for greatgrandchild in grandchild.children.all %}
+                                                                    <a class="dropdown-item" href="#">{{ greatgrandchild.title }}</a>
+                                                                {% endfor %}
+                                                            </div>
+                                                        {% endif %}
+                                                    </div>
+                                                {% endfor %}
+                                            </div>
+                                        {% endif %}
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</nav>
