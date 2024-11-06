@@ -1,8 +1,34 @@
 {% load i18n %}
+
 <header class="bg-dark text-white text-center py-3">
     <div class="container">
         <h1>
-            <a href="{% url 'home' %}" class="text-white text-decoration-none">My Website</a>
+            <a href="{% url 'home' %}" class="text-white text-decoration-none">{{ static_text.page_title }}</a>
         </h1>
+
+       <div class="d-flex justify-content-end mt-3">
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="languageDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                    {% get_current_language as LANGUAGE_CODE %}
+                    {% if LANGUAGE_CODE == 'en' %}
+                        {{ static_text.english }}
+                    {% elif LANGUAGE_CODE == 'uk' %}
+                        {{ static_text.ukrainian }}
+                    {% endif %}
+                </button>
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="languageDropdown">
+                    <li>
+                        <a href="{% url 'set_language' %}?language=en" class="dropdown-item {% if LANGUAGE_CODE == 'en' %}active{% endif %}">
+                            {{ static_text.english }}
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'set_language' %}?language=uk" class="dropdown-item {% if LANGUAGE_CODE == 'uk' %}active{% endif %}">
+                            {{ static_text.ukrainian }}
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
     </div>
 </header>

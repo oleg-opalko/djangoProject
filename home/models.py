@@ -1,7 +1,7 @@
 from django.db import models
+from modeltranslation.translator import register, TranslationOptions
 from mptt.fields import TreeForeignKey
 from mptt.models import MPTTModel
-
 
 # Create your models here.
 
@@ -13,10 +13,9 @@ class MenuItem(MPTTModel):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
+
     class MPTTMeta:
         order_insertion_by = ['title']
 
     def __str__(self):
         return self.title
-
-    # db.sqlite3
